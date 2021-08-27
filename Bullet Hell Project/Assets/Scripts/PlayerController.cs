@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject bullet;
+    //public GameObject bullet;
 
     private Rigidbody playerRb;
     public float xAxis;
@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     public float xAxisSnap;
     public float yAxisSnap;
 
-    public float moveSpeed = 10f;
+    //public bool altFire = false;
+
+    //public float moveSpeed = 10f;
     //public float dashPower = 70f;
     /*
     public bool canDash = true;
@@ -23,12 +25,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-        InvokeRepeating("fireBullets", 0f, 0.1f); // actually use coroutine instead so can control firerate? unless fixed firerate
+        //InvokeRepeating("fireSpreadBullets", 0f, 0.1f); // actually use coroutine instead so can control firerate? unless fixed firerate
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         xAxis = Input.GetAxis("Horizontal");
         yAxis = Input.GetAxis("Vertical");
         xAxisSnap = Input.GetAxis("HorizontalSnap");
@@ -58,24 +61,65 @@ public class PlayerController : MonoBehaviour
             Invoke("DashTimer",2f);
             Invoke("MoveControlTimer", 0.25f);
         }
-*/
-        if(Input.GetKey(KeyCode.Z)){
-            //Instantiate(bullet, gameObject.transform.position + Vector3.forward * 0.6f, bullet.transform.rotation);
+*//*
+        if(Input.GetKeyDown(KeyCode.Z)){
+            InvokeRepeating("fireBullets", 0f, 0.1f);
         }
-
+        if(Input.GetKeyUp(KeyCode.Z)){
+            CancelInvoke("fireBullets");
+        }
+        if(Input.GetKeyDown(KeyCode.LeftShift)){
+            altFire = !altFire;
+        }
+*/
     }
-
-    private void DashTimer(){
-        //canDash = true;
+/*
+    private void fireBullets(){
+        if(altFire){
+            fireTightBullets();
+        }else{
+            fireSpreadBullets();
+        }
     }
 
     private void MoveControlTimer(){
         //movementControl = true;
     }
     
-    private void fireBullets(){
+    private void fireSpreadBullets(){
+        float sideAngle = 15f;
+        Vector3 mainOffset = new Vector3(0.4f, 0, 0);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + mainOffset, bullet.transform.rotation);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - mainOffset, bullet.transform.rotation);
         Instantiate(bullet, gameObject.transform.position + Vector3.forward * 0.6f, bullet.transform.rotation);
+
+        Vector3 sideOffset = new Vector3(0.4f, 0, 0);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - sideOffset, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + sideOffset, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
+        
+        Vector3 sideSpacing = new Vector3(0.2f, 0, 0);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - sideOffset - sideSpacing, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + sideOffset + sideSpacing, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
+
     }
+
+    private void fireTightBullets(){
+        float sideAngle = -6f;
+        Vector3 mainOffset = new Vector3(0.2f, 0, 0);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + mainOffset, bullet.transform.rotation);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - mainOffset, bullet.transform.rotation);
+        Instantiate(bullet, gameObject.transform.position + Vector3.forward * 0.6f, bullet.transform.rotation);
+
+        Vector3 sideOffset = new Vector3(0.6f, 0, 0);
+        Vector3 sideOffset2 = new Vector3(0, 0, -0.4f);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - sideOffset + sideOffset2, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + sideOffset + sideOffset2, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
+        
+        Vector3 sideSpacing = new Vector3(0.2f, 0, 0);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - sideOffset - sideSpacing + sideOffset2, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + sideOffset + sideSpacing + sideOffset2, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
+
+    }*/
 
     private void OnCollisionEnter(Collision other){
         if(other.gameObject.CompareTag("Ground")){

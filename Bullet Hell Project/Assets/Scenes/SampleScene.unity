@@ -337,8 +337,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 1295101892}
   - component: {fileID: 1295101891}
   - component: {fileID: 1295101897}
+  - component: {fileID: 1295101898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -498,12 +499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3984e17d2485eaf418d0879768dfd76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1653058998664107462, guid: 31dcea5624fad584c978ff299f1f99bc, type: 3}
   xAxis: 0
   yAxis: 0
   xAxisSnap: 0
   yAxisSnap: 0
-  moveSpeed: 2
 --- !u!54 &1295101892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -581,7 +580,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295101890}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1295101896
 Transform:
   m_ObjectHideFlags: 0
@@ -590,8 +589,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295101890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: -1.37}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 0.46807, y: 0.093614005, z: 0.655298}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -614,10 +613,25 @@ MonoBehaviour:
   zAxisSnap: 0
   moveSpeed: 2
   dashPower: 50
+  dashCooldown: 1
   canDash: 1
   momentum: 0
   movementControl: 1
   dashDir: {x: 0, y: 0, z: 0}
+--- !u!114 &1295101898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295101890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3919a76583572764faeec49ffcb44698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 3708088946935245332, guid: d0eb34a1e3cc472488540281bacf19a3, type: 3}
+  altFire: 0
 --- !u!1001 &716482207388201538
 PrefabInstance:
   m_ObjectHideFlags: 0
