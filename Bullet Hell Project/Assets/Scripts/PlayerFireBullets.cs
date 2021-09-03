@@ -43,13 +43,14 @@ public class PlayerFireBullets : MonoBehaviour
         Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - mainOffset, bullet.transform.rotation);
         Instantiate(bullet, gameObject.transform.position + Vector3.forward * 0.6f, bullet.transform.rotation);
 
-        Vector3 sideOffset = new Vector3(0.4f, 0, 0);
-        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - sideOffset, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
-        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + sideOffset, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
+        Vector3 mirroredOffset = new Vector3(0.6f, 0, 0);
+        Vector3 absoluteOffset = new Vector3(0, 0, -0.2f);
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - mirroredOffset + absoluteOffset, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + mirroredOffset + absoluteOffset, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
         
         Vector3 sideSpacing = new Vector3(0.2f, 0, 0);
-        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - sideOffset - sideSpacing, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
-        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + sideOffset + sideSpacing, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) - mirroredOffset + absoluteOffset * 2 - sideSpacing, bullet.transform.rotation * Quaternion.Euler(0, -sideAngle, 0));
+        Instantiate(bullet, gameObject.transform.position + (Vector3.forward * 0.6f) + mirroredOffset + absoluteOffset * 2 + sideSpacing, bullet.transform.rotation * Quaternion.Euler(0, sideAngle, 0));
 
     }
 

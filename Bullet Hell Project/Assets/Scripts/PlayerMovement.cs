@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(!momentum){
             playerRb.transform.Translate((Vector3.right * xAxisSnap + Vector3.forward * zAxisSnap) * moveSpeed * Time.deltaTime);
+            playerRb.velocity = new Vector3(0,0,0);
+                playerRb.angularVelocity = Vector3.zero;
             //playerRb.AddForce(Vector3.forward * zAxis * moveSpeed);
         }else if(momentum && movementControl){
             if((xAxisSnap > 0 && dashDir.x < 0) || (xAxisSnap < 0 && dashDir.x > 0)){
@@ -53,18 +55,19 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log(vel.magnitude);
                 momentum = false;
                 playerRb.velocity = new Vector3(0,0,0);
+                playerRb.angularVelocity = Vector3.zero;
                 
             }
         }// if going in same direction as dash, halve the input
         if(Input.GetKeyDown(KeyCode.Space) && canDash){
-            dashDir = (Vector3.right * xAxisSnap + Vector3.forward * zAxisSnap);
+            dashDir = (Vector3.right * xAxisSnap + Vector3.forward * zAxisSnap).normalized;
             playerRb.velocity = new Vector3(0,0,0);
-            playerRb.AddForce(dashDir.normalized* dashPower, ForceMode.Impulse);
+            playerRb.AddForce(dashDir * dashPower, ForceMode.Impulse);
             canDash = false;
             momentum = true;
             movementControl = false;
             Invoke("DashTimer",dashCooldown);
-            Invoke("MoveControlTimer", 0.3f);
+            Invoke("MoveControlTimer", 0.2f);
         }
     }
 
