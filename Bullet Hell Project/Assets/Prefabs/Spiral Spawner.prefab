@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7935078530663642251}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.92, y: 0, z: 5.95}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,13 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28b1e07f3e5aff41a9adaa31e67d1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1653058998664107462, guid: 31dcea5624fad584c978ff299f1f99bc, type: 3}
-  repeatInterval: 1
+  bullet: {fileID: 6095935987282111845, guid: 9c19f2e349944da45a4b6c0003763877, type: 3}
+  repeatInterval: 0.1
   flipInterval: 1
   offsetCounter: 0
   offset: 4
   reversing: 0
-  bulletCount: 40
+  bulletCount: 10
   spiral: 1
 --- !u!114 &484556119
 MonoBehaviour:
@@ -128,9 +128,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7935078530663642251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e8ecf1cdf016645bb793e562dcc063, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b92c2b4a400a5844b99e0a4d20a6d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stunnable: 1
+  size: 1
   health: 200
   smoke: {fileID: 2741636321875904144, guid: 4025664adc6c10c4ca695e8f83531f77, type: 3}
 --- !u!54 &-7854250290830954167
@@ -145,7 +147,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
